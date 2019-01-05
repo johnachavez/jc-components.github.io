@@ -1,0 +1,149 @@
+body.vrma {
+  .header, .footer {
+    display: none;
+  }
+
+  article {
+    background-color: #266E86;
+    color: #fff;
+    font-size: 1.25rem;
+
+    > div {
+      padding: 2rem 0;
+    }
+
+    h2, form, .description, .early-access, .partners, .preview-link {
+      text-align: center;
+    }
+
+    svg {
+      display: block;
+      margin: auto;
+      * { fill: #fff; }
+    }
+
+    .logo {
+      display: flex;
+      justify-content: space-between;
+      align-items: top;
+      margin-bottom: 7rem;
+
+      > * { display: block; }
+      img { opacity: 0.5; }
+    }
+
+
+    h2 {
+      font-weight: 300;
+      margin: 0.5rem auto;
+      font-size: 2.75rem;
+    }
+
+    .description {
+      margin: 1.5rem auto 1rem;
+    }
+    .early-access {
+      text-transform: uppercase;
+      margin: 0.5rem auto;
+    }
+
+    form {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      input {
+        height: 50px;
+
+        &.rz-email {
+          border-radius: 8px 0 0 8px;
+          border: #fff solid 2px;
+          width: 280px;
+          padding-left: 9px;
+          &:focus {
+            border: 3px solid #3FD29E;
+          }
+        }
+        &.rz-button {
+          border-radius: 0 8px 8px 0;
+          width: 100px;
+          color: #fff;
+          background-color: #3FD29E;
+          border: none;
+          transition: background-color .3s ease-in-out;
+          &:hover {
+            background-color: #2EC08C;
+          }
+        }
+      }
+    }
+    a.slides {
+      color: #95B0B9;
+      background-color: #0B4A5E;
+      padding: 5rem 0;
+      font-size: 1.5rem;
+      text-align: center;
+      display: block;
+      margin-top: 2rem;
+      transition: all, 0.3s;
+      &:hover {
+        text-decoration: underline;
+        color: darken(#95B0B9, 5%);
+        background-color: darken(#0B4A5E, 5%);
+      }
+    }
+
+    div.info {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      font-size: 1.25rem;
+      line-height: 1.5;
+      opacity: 0.5;
+      margin: 3rem auto 1rem;
+
+      > div {
+        display: flex;
+        align-items: stretch;
+        flex: 0 1 240px;
+        margin: 4vw 2vw;
+
+        svg {
+          margin-right: 15px;
+          flex: 1 0 50px;
+        }
+      }
+    }
+
+    .partners {
+      color: #95B0B9;
+      background-color: #0B4A5E;
+      padding: 5rem 0;
+
+      .partner-logos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          flex: 1;
+          height: 50px;
+          max-width: 160px;
+          margin: 20px 15px;
+          * { fill: #95B0B9; }
+        }
+      }
+    }
+    #demo-form {
+      // Make sure there is enough room to scroll to this as an anchor.
+      margin-bottom: 70vh;
+      .demo-form {
+        margin: 3rem auto;
+      }
+    }
+  }
+}

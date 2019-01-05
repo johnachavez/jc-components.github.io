@@ -1,0 +1,11 @@
+.app-question.question {
+  position: relative;
+
+  @include button-icon($grey-4, 20px);
+  color: #bbb;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  vertical-align: middle;
+
+}

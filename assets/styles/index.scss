@@ -1,0 +1,265 @@
+// Lower index routes also have the index class (e.g. under dashboard/index),
+// so we have to be very specific to only apply to the home page index.
+body[class="ember-application application index"] article {
+  color: $tm-hero-text;
+
+  h2, .title {
+    font-weight: bold;
+    color: $tm-hero-title;
+  }
+
+  .splash {
+    background: $tm-bp-green;
+    display: flex;
+    align-items: center;
+    height: 34rem;
+    padding: 3rem 0;
+    color: white;
+
+    .content {
+      padding-right: 10rem;
+    }
+
+    h1, h2 {
+      color: white;
+      line-height: 1.2;
+      margin: 1rem auto;
+      text-align: left;
+    }
+    h1 {
+      font-size: 2.75rem;
+      font-weight: bold;
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: normal;
+    }
+
+    .images {
+      @media (max-width: $break) {
+        display: none;
+      }
+
+      @include position-short(absolute, 6rem, -100px, 0, auto);
+      width: 50%;
+      // margin-right: -15%;
+      // margin-bottom: -2rem;
+      // overflow: hidden;
+
+      .row {
+        margin: 0.5rem;
+        display: flex;
+        justify-content: flex-start;
+
+        &:nth-child(1) { margin-left: 6rem; }
+        &:nth-child(3) { margin-left: 6rem; }
+      }
+      img {
+        min-width: 20rem;
+        height: 10rem;
+        margin-right: 0.5rem;
+        border-radius: 6px;
+      }
+    }
+
+    .btn-tm-hero {
+      background-color: #268189;
+      border: 1px solid rgba(38, 129, 137, 0.5);
+      border-radius: 3px;
+      color: white;
+    }
+  }
+
+
+  .press {
+    background-color: #6B7A8A;
+    padding: 3rem 2vw;
+    text-align: center;
+
+    svg {
+      vertical-align: middle;
+      max-height: 50px;
+      max-width: 265px;
+      margin: 3rem auto;
+      * { fill: white; }
+    }
+  }
+
+
+  .features-box {
+    margin-top: 3rem;
+    font-size: 1.125rem;
+
+    h2 { font-size: 2.125rem; }
+
+    .blurb {
+      max-width: 40rem;
+      line-height: 1.5;
+    }
+
+    .features-and-screencast {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .features {
+      padding: 2rem 0;
+
+      .feature {
+        display: flex;
+        align-items: center;
+
+        .numeral {
+          color: $tm-hero-yellow;
+          font-size: 3.75rem;
+          margin-right: 0.5rem;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .screencast {
+      .wrapper {
+        max-width: 560px;
+        height: 315px;
+        margin: 4rem -2rem 0 auto;
+
+        position: relative;
+
+        iframe, .video-container {
+          @include position-short(absolute, 0, 0, 0, 0);
+          width: 100%;
+          background-color: black;
+        }
+        .video-container {
+          cursor: pointer;
+          background: url('https://img.youtube.com/vi/MFTHwoDWRF4/0.jpg') center center no-repeat;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &:hover * { fill: red; }
+        }
+      }
+    }
+  }
+
+  .markets-box {
+    position: relative;
+    margin-top: 6rem;
+
+    h2 {
+      text-align: center;
+      font-weight: normal;
+    }
+    h3 {
+      color: $tm-bp-green;
+      margin: 0 0 1rem 0;
+    }
+
+    svg {
+      @include position-short(absolute, 10rem, 0, auto, 0);
+      .continent path { fill: rgba(185, 202, 210, 0.2); }
+    }
+
+    .markets {
+      width: 100%;
+      max-width: 800px;
+      margin: 2rem auto;
+      font-size: 0.875rem;
+
+      display: flex;
+      justify-content: space-between;
+
+      .column {
+        flex: 1;
+        width: 25%;
+        margin: 0.5rem;
+        .region { margin-bottom: 3rem; }
+      }
+    }
+  }
+
+  .market-form {
+    max-width: 800px;
+    margin: 5rem auto;
+    form { margin-top: 3rem; }
+  }
+
+  .summary {
+    padding: 2rem 0 4rem;
+    background-color: #6C7A89;
+    color: $grey-3;
+    text-align: left;
+  }
+}
+
+.rw-words{
+  display: inline;
+  position: relative;
+  min-width: 20rem;
+  visibility: hidden;
+  white-space: nowrap;
+  vertical-align: text-bottom;
+
+  span {
+    visibility: visible;
+    @include position-short(absolute, 0, 0, null, 0);
+    opacity: 0;
+
+    // Play each animation once.
+    animation: rotateWord 3s ease-in-out 1 0s;
+    animation-fill-mode: forwards;
+
+    &:nth-child(2) { animation-delay: 3s; }
+    &:nth-child(3) { animation-delay: 6s; }
+    &:nth-child(4) {
+      animation: 3s ease-in-out 9s 1 normal forwards rotateFinalWord;
+    }
+  }
+}
+
+@keyframes rotateWord {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(3px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+@keyframes rotateFinalWord {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(3px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

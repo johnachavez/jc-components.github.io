@@ -1,0 +1,12 @@
+.app-braintree-paypal {
+  .paypal-loading {
+    // use the size of the loaded paypal-button iframe so that the
+    // container gets the final size right away, even before the iframe is
+    // loaded so that it won't be resized when the iframe is rendered.
+    width: 148px;
+
+    // use relative to position the app-spin component
+    position: relative;
+
+  }
+}

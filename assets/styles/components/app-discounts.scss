@@ -1,0 +1,58 @@
+@keyframes lds-circle {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  100% {
+    transform: rotateY(3600deg);
+  }
+}
+
+.app-discounts {
+  .lds-circle {
+    display: inline-block;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border-radius: 50%;
+    background: #43B6C0;
+    animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  .last-minute-input {
+    width: 8%;
+  }
+  .last-minute-discount-direction {
+    margin-left: 20px;
+  }
+
+  .last-minute-discount-type {
+    margin-right: 20px;
+  }
+
+  .discount-item {
+    &:hover {
+      background-color: rgba(50,50,50, 0.04);
+    }
+    .delete-discount {
+      display: inline;
+      float: right;
+    }
+  }
+
+  .chart {
+    padding-top: 1rem;
+  }
+
+  .discount-error {
+    color: #FF2222
+  }
+  .days-input {
+    border-color: white;
+  }
+}

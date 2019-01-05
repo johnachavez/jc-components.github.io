@@ -1,0 +1,381 @@
+@import "mixins";
+
+* { box-sizing: border-box; }
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+html {
+  // Have to set the font size in html only and then can use rems to scale
+  font-size: 16px;
+  line-height: 1.68;
+  @media (max-width: $break) {
+    font-size: calc(12px + 1vw / 2);
+  }
+}
+body {
+  font-family: $fontFamilyBody;
+  // Recommended 400/Normal font-weight for default body since smaller sizes
+  // become hard to read on non-Mac screens
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  article {
+    // flex: 1 doesn't work in IE - have to be specific.
+    flex: 1 0 auto;
+    min-height: 90vh;
+  }
+}
+a, a:visited {
+  text-decoration: none;
+  color: $tm-blue;
+
+  &:hover {
+    color: $grey-1;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
+h4, h5 {
+  font-weight: 400;
+}
+
+hr {
+  border: 1px solid $grey-3;
+}
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+.content {
+  width: 95%;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: $break) {
+    width: 100%;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+}
+
+@mixin color-header($text-color, $hover-color, $hover-text-color: null) {
+  @if $hover-text-color == null {
+    $hover-text-color: $text-color;
+  }
+	
+.sub-menu{
+ display:none;
+}
+
+li.sub-menu-parent:hover .sub-menu {
+  display: block;
+  position: absolute;
+  background-color: #fff;
+  top: 90px;
+  padding: 0;
+  border-radius: 3px;
+  transform: translateY(-2em);
+  z-index: 2;
+  transition: all 0.3s ease-in-out 0.3s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+  box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+nav {
+	background-color:rgba(255,255,255,0.5); 
+	}
+nav a { 
+  color: #777C85; 
+  display: block; 
+  padding: 0em 1em; 
+  text-decoration: none; 
+  z-index: 1; }
+nav a:hover { 
+  color: #343F53; }
+nav ul,
+nav ul li { 
+  list-style-type: none; 
+  padding: 0; 
+  margin: 0;  }
+
+nav > ul {  
+  text-align: center;  }
+nav > ul > li { 
+  display: inline-block; }
+
+  a.brand:hover svg * {
+    //fill: $text-color;
+    rect {
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+}
+
+header {
+  z-index: 1;
+  background-color: white;
+  color: $tm-blue-grey;
+  //color hack until it gets global
+  box-shadow: 0 1px 1px $box-shadow-grey;
+
+  > .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > a {
+      line-height: 0;
+      padding: 12px 0;
+    }
+  }
+
+  
+
+  .show_nav {
+    display: none;
+    cursor: pointer;
+    svg { width: 32px; height: 32px; }
+  }
+
+  @media (max-width: $break) {
+    padding: 10px 2vw;
+    .show_nav { display: block; }
+    nav {
+      display: none;
+      position: absolute;
+      right: 5px;
+      top: 50px;
+      padding: 8px;
+      background-color: transparentize($blue, 0.05);
+      z-index: 3;
+      a {
+        display: block;
+        margin: auto;
+      }
+    }
+  }
+}
+
+.demo-button {
+  z-index: 3;
+  font-size: 18px/1.4;
+  flex: 1 1 auto;
+  width: 100px;
+  top: 15px;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  overflow:hidden;
+  transition: .3s;
+  &:after {
+    position: absolute;
+    transition: .3s;
+    content: '';
+    width: 0;
+    bottom: -1px;
+    height: 120%;
+    left: -10%;
+    transform: skewX(-15deg);
+    z-index: -1;
+    background: #000;
+  }
+  &:hover {
+    cursor: pointer;
+    color: #fff;
+    &:after {
+      left: -10%;
+      width: 120%;
+    }
+  }
+}
+
+body.property-managers {
+  header {
+    background-color: transparent;
+  }
+}
+
+// body[class*=" dashboard-listing"],
+body[class="ember-application application index"],  body[class*=" user"], body[class*=" about"] {
+  header {
+    box-shadow: none;
+    background-color: transparent;
+    @include color-header($white, $blue);
+    @include position-short(absolute, 0, 0, null, 0);
+    .brand svg {
+      g.for-white-bg {
+        opacity: 0;
+        display:none;
+      }
+
+      g.no-white-bg {
+        fill: $white;
+        transform: translateY(-46px);
+        transition: 1s transform, 1s opacity;
+      }
+    }
+  }
+}
+
+body[class*=" dashboard"], body[class*=" about-testimonials"], body[class*=" about-press"] {
+  header {
+    .content {
+      .brand {
+        svg {
+          g.no-white-bg {
+            opacity: 0;
+            display:none;
+          }
+          g.for-white-bg {
+            opacity: 1;
+            display:inline;
+            transition: 1s opacity;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+body[class*=" user"], body[class*=" about"] {
+  article {
+    .splash {
+      padding: 10vh 5vw 8vh;
+      background-color: $trust-blue;
+
+      h1 {
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 300;
+      }
+    }
+
+    main {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 400;
+      margin-top: 1vh;
+    }
+  }
+}
+
+body[class*=" user"] {
+  article {
+    main {
+      width: 95%;
+      max-width: 1080px;
+    }
+  }
+}
+
+body.private-mode {
+  div.content {
+    max-width: 600px;
+    margin: 10vh auto;
+    > div { margin: 5vh 0; }
+  }
+}
+
+
+footer {
+  padding: 40px 10px 20px 10px;
+  font-weight: 400;
+  background-color: $tm-dark-blue;
+  color: $white;
+  text-align: left;
+
+
+  h3 {
+    color: $white;
+    letter-spacing: 1px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+
+  .content {
+    a, a:visited {
+      color: $white;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+
+      &:hover { color: $blue; }
+    }
+
+    .segments {
+      flex: 1 100%;
+      display: flex;
+      align-items: flex-start;
+
+      width: 100%;
+
+      > div {
+        flex: 1;
+        padding: 10px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .social {
+        margin: 10px;
+      }
+    }
+
+    p.copyright {
+      margin: 0;
+      font-size: 0.8rem;
+
+      a {
+        letter-spacing: 0;
+      }
+    }
+  }
+
+  svg {
+    vertical-align: middle;
+    max-height: 1.68rem;
+    transition: opacity, 0.2s;
+    &:hover { opacity: 0.75; }
+  }
+}
+
+
+.title-box {
+  color: $grey-1;
+  font-family: $fontFamilyBody;
+  margin-top: 3vh;
+
+  h2 {
+    font-size: 2rem;
+    line-height: 1.75;
+  }
+  h4 {
+    color: $grey-2;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+}

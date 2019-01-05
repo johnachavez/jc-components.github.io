@@ -1,0 +1,36 @@
+$size: 64px;
+
+.app-toggle {
+  position: relative;
+  margin: auto;
+
+  width: $size;
+  height: $size / 2;
+  background-color: #cdcdcd;
+  border-radius: $size / 4;
+  cursor: pointer;
+
+  .slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    transition: all 0.5s;
+    width: $size / 2 - 8px;
+    height: $size / 2 - 8px;
+    border-radius: 100%;
+    z-index: 1;
+    background-color: white;
+  }
+
+  &.off {
+    .slider {
+      transform: translateX(0);
+    }
+  }
+  &.on {
+    background-color: $tm-bp-green;
+    .slider {
+      transform: translateX($size / 2);
+    }
+  }
+}

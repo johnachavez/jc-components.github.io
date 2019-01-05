@@ -1,0 +1,399 @@
+.chart-container {
+  flex: 1 1 auto;
+}
+
+// TODO: unify these spinners - app-spin is a spin.js component, .spin is a
+// SVG with a transform.
+.app-spin { display: inline-block; }
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-359deg);
+  }
+}
+
+@keyframes errors {
+  0% { border-color: $red; }
+  5% { transform: translateX(-2px); }
+  10% { transform: translateX(2px); }
+  15% { transform: translateX(-2px); }
+  20% { transform: translateX(2px); }
+  25% { transform: translateX(-2px); }
+  30% { transform: translateX(2px); }
+  100% { border-color: auto; }
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.68rem;
+  width: 1.68rem;
+
+  svg {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  &.clickable {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+
+.question {
+  @include button-icon($grey-4, 20px);
+  color: #bbb;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.splash {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  overflow: hidden;
+
+  h2 {
+    font-weight: 600;
+    font-size: 3.2rem;
+    line-height: 1.2;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+    font-weight: 300;
+  }
+}
+
+.blurred-background {
+  @include position-short(absolute, 0,0,0,0);
+  filter: blur(3px);
+  // @include filter(blur(3px));
+  // -moz-filter: blur(3px);
+  // filter: url(/blur.svg#svgblur);
+  // filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+  // Hackety hack. Webkit likes to display a inset blur on the container for
+  // some unknown reason. This fixes it.
+  // http://demosthenes.info/blog/534/Crossbrowser-Image-Blur
+  transform: scale(1.0);
+  overflow: hidden;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+
+  display: block;
+  z-index: -1;
+}
+
+
+// Using Tether for nicer, absolute positioned hover windows. This moves the
+// window to the outmost element and absolute positions, which solves problems
+// with the hover window disappearing when using overflow: hidden or scroll.
+//
+// It also solves the problem of hover windows inheriting the styles of their
+// parent. Which is life until CSS supports scoping.
+.hover-window {
+  background-color: $grey-1;
+  color: $grey-4;
+  border-radius: 4px;
+  // Make sure hover window is always above property partial
+  z-index: 10;
+
+  padding: 15px;
+
+  display: none;
+  opacity: 0;
+  &.visible { display: block; opacity: 1; }
+
+  // This works better as a psuedo element, but since we need the tip to move
+  // independently on calendar hovers, and psuedo elements can't have inline
+  // styles, it's easier to just make it a div.
+  // &:after {
+  .hover-tip {
+    $height: 30px;
+    position: absolute;
+    @include triangle(down, $grey-1, $height, $height / 2);
+    bottom: -$height / 2;
+    left: calc(50% - #{$height / 2});
+  }
+}
+
+
+.sticky-bar {
+  @include position-short(fixed, 0, 0, null, 0);
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.05);
+  display: none;
+  padding: 2vh 0;
+  z-index: 100;
+  text-align: center;
+  @media (max-width: $break) {
+    // Never show on mobile.
+    display: none !important;
+  }
+}
+
+
+.listing-image {
+  position: relative;
+  border-radius: 3px;
+  height: auto;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @media (max-width: $break) {
+    height: 60px;
+    width: 60px;
+    flex: 0 0 60px;
+  }
+
+  &.default-image {
+    background-size: 50px;
+    background-color: $blue;
+  }
+
+  img { width: 100%; height: 100%; }
+  .syncing {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparentize($blue, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 50%; height: 50%;
+      * { stroke: white; }
+      polygon { fill: white; }
+    }
+  }
+}
+
+
+.pricing-alert {
+  text-align: center;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  font-size: 0.75rem;
+
+  &.active {
+    background: rgba(67, 182, 192, 0.4);
+    color: $tm-dark-green;
+  }
+  &.paused {
+    background: rgba(126, 143, 164, 0.2);
+    color: $tm-blue-grey;
+  }
+}
+
+
+//transitions on sidenav
+.animated{
+  animation-fill-mode: both;
+  animation-duration: 1s;
+}
+
+@keyframes tada {
+  0% { transform: scale(1); }
+  10%, 20% { transform: scale(0.9) rotate(-3deg); }
+  30%, 50%, 70%, 90% { transform: scale(1.1) rotate(3deg); }
+  40%, 60%, 80% { transform: scale(1.1) rotate(-3deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fadeInLeft {
+  animation-name: fadeInLeft;
+}
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+.fadeOutLeft {
+  animation-name: fadeOutLeft;
+}
+
+// Some nice tab inspirations
+// http://tympanus.net/Development/TabStylesInspiration/
+.tabs {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid $grey-2;
+  a {
+    padding: 14px 20px;
+    margin: 0 5px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  a:hover {
+    background-color: $grey-3;
+  }
+  a.active {
+    color: $grey-2;
+    &:hover {
+      background-color: white;
+      color: $grey-2;
+    }
+    margin-bottom: -1px;
+
+    cursor: default;
+    border: 1px solid $grey-2;
+    border-bottom: 1px solid white;
+  }
+}
+
+.blue-tabs {
+  .tab-content {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 1080px;
+    margin: auto;
+    padding: 0.5rem 0;
+    flex-wrap: wrap;
+  }
+  font-size: 0.8rem;
+  border-top: 1px solid $grey-3;
+  border-bottom: 1px solid $grey-3;
+
+  a {
+    border-radius: 2px;
+    text-transform: uppercase;
+    padding: 0.75rem 1vw;
+
+    letter-spacing: 1px;
+    color: $trust-blue;
+    display: flex;
+    align-items: center;
+
+    svg {
+      display: block;
+      margin-right: 8px;
+      width: 1rem;
+      height: 1rem;
+      * { fill: $trust-blue; }
+    }
+
+    &:focus {
+      outline: none;
+      background-color: lighten($blue, 10%);
+    }
+  }
+  a:hover {
+    color: $blue;
+    svg * { fill: $blue; }
+  }
+  a.active {
+    cursor: default;
+    position: relative;
+    color: $grey-1;
+  }
+}
+
+.table {
+  margin: 5vh 0;
+
+  .header { font-weight: bold; }
+  .row, .header {
+    > * { flex: 1; }
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    &:nth-of-type(even) { background-color: #fefefe; }
+    &:nth-of-type(odd) { background-color: #fafafa; }
+    > .center { text-align: center; }
+
+    .btn {
+      padding: 0.3rem 1vw;
+      width: 70%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg { height: 1.4rem; }
+    }
+  }
+}
+
+.toggle {
+  width: 48px;
+  height: 24px;
+  border-radius: 12px;
+
+
+  transition: background-color 1s;
+  &.off { background-color: $grey; }
+  &.on {
+    background-color: $blue;
+    .bubble { margin-left: 26px; }
+  }
+
+  .bubble {
+    height: 20px;
+    width: 20px;
+    margin: 2px;
+    border-radius: 10px;
+    background-color: white;
+    transition: margin-left 1s;
+  }
+}
+
+
+.alert-bubble {
+  @include position-short(absolute, -8px, -25px, null, null);
+  width: 25px;
+  height: 25px;
+  background-color: $tm-red;
+  border-radius: 50%;
+  color: white;
+  box-shadow: 1px 1px 1px gray;
+  overflow: hidden;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+
+  &:hover {
+    background-color: $red;
+    top: -9px;
+  }
+}
+
+.fixedsticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}

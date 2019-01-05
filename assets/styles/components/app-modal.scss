@@ -1,0 +1,32 @@
+.modal-wrap {
+  @include position-short(fixed, 0, 0, 0, 0);
+  overflow: scroll;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 3000;
+
+  .modal-window {
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 1px 1px 20px rgb(117, 116, 116);;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 3vh 12vw;
+    max-height: 90vh;
+    max-width: 90vw;
+  }
+
+  .modal-close {
+    @include button($blue, true);
+    @include position-short(absolute, 10px, 10px, null, null);
+
+    &:active {
+      @include position-short(absolute, 11px, 10px, null, null);
+    }
+
+  }
+}

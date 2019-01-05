@@ -1,0 +1,50 @@
+body.how-it-works article {
+  .section {
+    padding: 4vh 0;
+
+    &:nth-of-type(even) {
+      text-align: right;
+      background-color: $grey-4;
+      .content { flex-direction: row-reverse; }
+      svg { margin-left: 3vw; }
+    }
+    &:nth-of-type(odd) {
+      svg { margin-right: 3vw; }
+    }
+  }
+
+  .section .content {
+    color: #474747;
+    display: flex;
+    align-items: center;
+
+    max-width: 900px;
+    padding: 0 3vw;
+
+    @media (max-width: $break) {
+      display: block;
+    }
+
+    > div { flex: 1 1 550px; }
+
+    svg {
+      display: block;
+      height: 100%;
+      max-width: 200px;
+      max-height: 150px;
+      flex: 0 1 250px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+  }
+
+  .ready {
+    text-align: center;
+    padding: 4vh 0 10vh;
+    h2 { font-size: 3rem; }
+  }
+}

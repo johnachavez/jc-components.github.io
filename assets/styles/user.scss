@@ -1,0 +1,379 @@
+body.user-summary main {
+  h2 {
+    width: 400px;
+    margin: auto;
+  }
+}
+body.user-billing article main {
+  width: 800px;
+  text-align: left;
+  padding-top: 0;
+
+  .selectable {
+    // TODO: import input styles here? Or use a disabled input?
+    display: inline-block;
+    border: 2px solid $grey-3;
+    padding: 5px 20px;
+    border-radius: 4px;
+    font-weight: 400;
+    vertical-align: middle;
+    line-height: 1.68;
+  }
+
+  h3 {
+    margin-bottom: 1vh;
+  }
+
+  .payment-methods {
+
+    .cards {
+      display: flex;
+      width: 70%;
+      flex-wrap: wrap;
+
+      .payment-item {
+        width: 45%;
+      }
+
+      .card {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 150px;
+        width: 250px;
+        border: 1px solid $tm-blue;
+        border-radius: 4px;
+        text-align: center;
+        margin-right: 1.5vw;
+        margin-bottom: 1.5vw;
+        font-size: 0.8rem;
+        padding: 0.75rem;
+
+        .app-spin {
+          @include position-short(absolute, 0, 0, 0, 0);
+          z-index: 1;
+          background: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-info {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          justify-content: center;
+          line-height: 1.1;
+        }
+
+        .delete-card {
+          @include position-short(absolute, null, 8px, 0, null);
+          text-align: right;
+          font-size: 0.7rem;
+          color: red;
+        }
+
+        .expired-card {
+          color: red;
+        }
+
+        svg {
+          height: 45px;
+        }
+
+        .status svg {
+          width: 15px;
+          height: 15px;
+        }
+
+        &.add {
+          cursor: pointer;
+          svg {
+            width: 32px;
+            height: 32px;
+          }
+          &:hover {
+            background-color: $blue;
+            background-color: transparentize($blue, 0.8);
+            border-color: darken($blue, 5%);
+          }
+        }
+      }
+    }
+  }
+
+  .stripe-logo { text-align: right; margin-top: 3rem; }
+
+}
+
+
+.payments-details {
+  span {
+    display: block;
+    line-height: 1.2;
+    font-weight: normal;
+    font-size: 0.9rem;
+  }
+}
+
+body.user-statements main {
+
+  .question {
+    background-color: $blue;
+    color: white;
+  }
+
+  .statements {
+    font-size: 0.9rem;
+
+    .statement .row { white-space: nowrap; }
+    .header.row { background-color: $grey-3; }
+    .row {
+      &:hover {
+        cursor: pointer;
+        background-color: lighten($blue, 30%);
+      }
+      > div { flex: 2; }
+      div:nth-child(1) { flex: 1; }
+      div:nth-child(2) { flex: 6; }
+      div:nth-child(6) { flex: 4; }
+      div:nth-child(7) { flex: 6; }
+
+      .expand {
+        svg {
+          padding: 2px 0;
+          display: block;
+          margin-right: auto;
+          height: 1.6rem;
+          max-width: 1.6rem;
+          transition: all 0.2s;
+          border-radius: 2px;
+        }
+        &:hover svg { background-color: rgba(0, 0, 0, 0.2); }
+      }
+      .download {
+        padding: 0;
+        svg {
+          display: block;
+          margin: auto;
+          height: 1.6rem;
+          max-width: 1.6rem;
+        }
+      }
+    }
+    .row-selected {
+      background-color: lighten($blue, 30%);
+      .expand svg {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .statement-items {
+    margin: 0 0 0 1rem;
+    font-size: 0.85rem;
+
+    .header {
+      background-color: white;
+      margin: 0;
+      padding: 0;
+
+      div {
+        flex: 1;
+        text-align: left;
+        padding: 0 0.5rem;
+      }
+
+      div:nth-child(1) { flex: 1.4; }
+      div:nth-child(2) { flex: 1.2; }
+      div:nth-child(3) { flex: 7; }
+    }
+
+    .statement-item {
+      padding: 0 0 0 0;
+
+      .row {
+        text-align: right;
+        padding: 0;
+        background-color: white;
+        white-space: nowrap;
+
+        div {
+          flex: 1;
+          text-align: left;
+          padding: 0 0.5rem;
+        }
+
+        div:nth-child(1) { flex: 1.4; }
+        div:nth-child(2) { flex: 1.2; }
+        div:nth-child(3) {
+          flex: 7;
+          text-align: left;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        &:hover {
+          cursor: auto;
+          background-color: lighten($blue, 30%);
+        }
+
+      }
+    }
+
+  }
+
+  .currency {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    > div:first-child {
+      padding-right: 2vw;
+    }
+  }
+
+  .syncing {
+    background-color: #5bc5ce;
+    color: white;
+    padding: 3px;
+  }
+}
+
+
+body.user-plan main {
+  .plans {
+    max-width: 800px;
+    margin: 2vh auto;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    .plan {
+      margin: 0 1vw;
+      padding: 2vh 3vw 2vh 1vw;
+      background-color: lighten($blue, 30%);
+    }
+  }
+}
+
+
+body.user-accounts main {
+  .accounts {
+    margin: 20px auto;
+    .account, .header {
+      align-items: center;
+
+      div {
+        flex: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-align: center;
+      }
+      div.channel-public-id {
+        flex: 3;
+        text-align: left;
+      }
+      .refresh svg * { fill: $blue; }
+      .valid-true { color: green; }
+      .valid-false { color: red; }
+      .trash svg * { stroke: $red; }
+    }
+  }
+}
+
+body.user-tokens main {
+  .tokens {
+    margin: 20px auto;
+    .token, .header {
+      align-items: center;
+
+      div {
+        flex: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .btn {
+        padding: 0.3rem 1vw;
+        width: 80px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      svg { height: 1.4rem; }
+
+      .trash svg * { stroke: $red; }
+    }
+  }
+
+  form.vertical {
+    margin: 0;
+  }
+}
+
+body.sudo main {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.invoice {
+  a.print {
+    display: block;
+    height: 2rem;
+    width: 2rem;
+    margin: 2rem 2rem 0 auto;
+    @media only print { display: none; }
+  }
+  .logo {
+    width: 33%;
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+    * { fill: black; }
+  }
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin: 3rem auto;
+  }
+  .about {
+    display: flex;
+    justify-content: space-around;
+    margin: 3rem auto;
+    .status {
+      font-size: 2rem;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+  .items {
+    border-bottom: 2px solid $trust-blue;
+  }
+  .header {
+    background-color: $trust-blue;
+    border-bottom: 2px solid $trust-blue;
+    color: white;
+    padding: 0.5rem;
+  }
+  .row {
+    display: flex;
+    padding: 0.3rem;
+    > div { flex: 1; }
+  }
+  .balance { border-top: 2px solid $trust-blue; }
+  .totals {
+    margin-left: auto;
+    width: 50%;
+  }
+  .amount { text-align: right; }
+  .strong { font-weight: bold; }
+  .footer {
+    text-align: center;
+    margin-top: 6rem;
+    h3 { text-transform: uppercase; }
+  }
+}

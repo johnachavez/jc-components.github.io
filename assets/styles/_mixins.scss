@@ -1,0 +1,118 @@
+$tm-dark-green: #258189;
+$tm-bp-green: #43B6C0;
+$tm-blue: #36CEFF;
+$tm-dark-blue: #343F53;
+$tm-blue-grey: #7F8FA4;
+$tm-grey: #B9CAD2;
+$tm-sky-light: #F5F8FF;
+$tm-light: #F6F7F9;
+
+$tm-green: #26CB7C;
+$tm-yellow: #ffc000;
+$tm-red: #FB724B;
+
+$tm-hero-title: #354052;
+$tm-hero-text: #7F8FA4;
+$tm-hero-yellow: #FFBF00;
+
+
+$bp-green: #43B6C0;
+$dark-green: #258189;
+$bp-blue: #36CEFF;
+
+$blue-dark: #343F53;
+$blue-grey: #7F8FA4;
+$grey: #B9CAD2;
+$sky-light: #F5F8FF;
+$light: #F6F7F9;
+
+
+
+$break: 600px;
+// Want to hide the minimap on small screens. 600px is too small though.
+$calendar-break: 800px;
+
+$teal: #0e979f;
+
+$blue: #43B6C0;
+
+$blue-75: #71d3da;
+$blue-50: #98e1e5;
+$trust-blue: #10304a;
+
+$yellow-orange: #fbb03b;
+$orange: #ff8259;
+
+$green: #00c460;
+$red: #ff2d44;
+$dark-red: #ad0014;
+$light-red: #f9e8ea;
+
+// 1 darkest, N lightest
+$grey-1: #333;
+$grey-2: #777;
+$grey-3: #dcdcdc;
+$grey-4: #f8f8f8;
+
+$box-shadow-grey: #E6EAEE;
+
+$white: #fff;
+
+$fontFamilyBody: 'europa', 'Source Sans Pro', Helvetica, Arial, sans-serif;
+$fontFamilyLearn: 'Merriweather', Georgia, serif;
+
+// Bourbon's position helper is dumb. 0 values means the value is excluded, so
+// to provide a 0, you have to use 0px, which isn't valid css.
+@mixin position-short($type, $top, $right, $bottom, $left) {
+  position: $type;
+  @if $top    { top: $top; }
+  @if $right  { right: $right; }
+  @if $bottom { bottom: $bottom; }
+  @if $left   { left: $left; }
+}
+
+@mixin button-icon($bgcolor, $size) {
+  width: $size; height: $size;
+  margin: 0 0 2px 2px;
+  background-color: $bgcolor;
+  border-radius: 50%;
+  display: none;
+  cursor: pointer;
+
+  &:hover, &:active {
+    background-color: darken($bgcolor, 20%);
+    color: $white;
+  }
+
+  color: $grey-1;
+
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+
+  svg {
+    padding: $size / 5;
+    * { fill: white; }
+  }
+}
+
+// Stolen from: http://codepen.io/bluesaunders/pen/FCLaz/
+$dark-text-default: $grey-2 !default;
+$light-text-default: #fff !default;
+
+@function brightness($color) {
+  @return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
+}
+
+@function color-contrast($color, $dark: $dark-text-default, $light: $light-text-default) {
+  @if $color == null {
+    @return null;
+  }
+  @else {
+    $color-brightness: brightness($color);
+    $light-text-brightness: brightness($light);
+    $dark-text-brightness: brightness($dark);
+
+    @return if(abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness), $light, $dark);
+  }
+}

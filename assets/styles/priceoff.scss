@@ -1,0 +1,215 @@
+.priceoff {
+  header, footer { display: none; }
+
+  article {
+    .splash {
+
+      padding: 5rem 2vw;
+      color: black;
+      line-height: 1.2;
+      text-align: center;
+
+      svg {
+        width: 100%;
+        height: 6vh;
+      }
+      svg:hover {
+        opacity: 0.8;
+      }
+
+      h1 {
+        color: black;
+        margin: 1vh auto;
+        text-shadow: none;
+        font-size: 5rem;
+        font-weight: 300;
+      }
+
+      p {
+        font-size: 1.5rem;
+        font-weight: 300;
+      }
+
+      .background {
+        opacity: 0.1;
+        @include position-short(absolute, 0,0,0,0);
+        filter: blur(3px);
+        -moz-filter: blur(3px);
+        filter: url(/blur.svg#svgblur);
+        filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+        // Hackety hack. Webkit likes to display a inset blur on the container for
+        // some unknown reason. This fixes it.
+        // http://demosthenes.info/blog/534/Crossbrowser-Image-Blur
+        transform: scale(1.0);
+        margin: -20px;
+        overflow: hidden;
+        width: calc(100% + 40px);
+        height: calc(100% + 40px);
+        display: block;
+        z-index: -1;
+      }
+    }
+
+    .content {
+      width: 95%;
+      max-width: 1080px;
+      margin: auto;
+    }
+
+    .cta {
+      background-color: #096A70;
+      color: #ffffff;
+      padding: 4vh 0 4vh 0;
+      text-align: center;
+
+      h2 {
+        font-weight: 400;
+        font-size: 1.3rem;
+      }
+
+      form.horizontal {
+        width: 100%;
+        margin: 3vh;
+      }
+
+      p.confirmation {
+        color: #5bc5ce;
+        font-weight: 700;
+      }
+
+      p.errors {
+        color: #ff2d44;
+        font-weight: 700;
+      }
+
+      .disclaimer {
+        font-size: 0.8rem;
+      }
+    }
+
+    .features {
+      .content {
+        display: flex;
+        align-items: center;
+
+        margin: 0 auto 4vh auto;
+
+        > div {
+          flex: 1;
+          padding: 10px;
+          text-align: center;
+        }
+
+        svg {
+          width: 100%;
+          height: 3vh;
+          margin: 4vh 0 1vh 0;
+        }
+
+        p {
+          color: #888888;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .divider {
+      background-color: $tm-dark-blue;
+      color: white;
+      font-size: 1.4rem;
+      padding: 2vh 1vw;
+      text-align: center;
+    }
+
+    .case-studies {
+
+      padding-bottom: 5vh;
+
+      h2 {
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 300;
+        font-size: 2rem;
+        margin: 4vh 0;
+      }
+
+      .table-of-contents{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 3vh 0 6vh 0;
+
+        > div {
+          flex-direction: column;
+          display: flex;
+
+          > a {
+            flex: 1;
+          }
+        }
+
+      }
+
+      .case-study {
+        margin: 3vh 0;
+        text-align: center;
+
+        h3 {
+          text-align: left;
+          font-size: 1.3rem;
+        }
+
+        .case-study-content {
+          width: 90%;
+          margin: auto;
+
+          .screenshots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 3vh 0;
+
+            > div {
+              flex: 1;
+
+              &.versus {
+                flex: none;
+                margin: 0 3vw;
+                font-weight: 600;
+                font-size: 2rem;
+              }
+
+              img {
+                width: 100%;
+                max-width: 400px;
+              }
+            }
+
+            &.alone {
+              img {
+                max-width: 650px;
+              }
+            }
+          }
+
+          .analysis {
+            text-align: left;
+
+            h4 {
+              font-size: 1.2rem;
+              font-weight: 600;
+            }
+
+            p {
+              text-align: justify;
+              line-height: 1.3;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+.app-date-range {
+  .range-periods {
+    .header { font-weight: bold; }
+    .header, .row {
+      display: grid;
+      grid-gap: .5rem;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      padding: 0.5rem;
+      align-items: center;
+    }
+
+    .rate-error {
+      background-color: $light-red;
+    }
+    .delete svg * { stroke: $red; }
+    .add {
+      display: block;
+      max-width: 33%;
+      margin: auto;
+    }
+    .btn-red-outline { max-height: 47px; }
+
+    .label-checkbox{
+      margin-left: 0.25rem;
+      text-transform: none;
+      font-weight: normal;
+    }
+
+    .checkbox-column {
+      flex-direction:column;
+      flex:2.75;
+    }
+
+    input {
+      color: $grey-1;
+      font-weight: 400;
+
+      &:focus {
+        border-color: $blue;
+        transition: 0.2s, border-color;
+      }
+    }
+
+    select {
+      color: $grey-1;
+      font-size: 1.3rem;
+      font-weight: 400;
+
+      &:focus {
+        border-color: $blue;
+        transition: 0.2s, border-color;
+      }
+    }
+  }
+}

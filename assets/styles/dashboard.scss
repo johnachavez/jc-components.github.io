@@ -1,0 +1,521 @@
+body[class*=" dashboard-index"] {
+  background: $light;
+}
+
+body[class*=" dashboard-index"] article {
+  .status {
+    margin: 1rem auto;
+    max-width: 960px;
+    width: 95%;
+    display: flex;
+    //background: $blue;
+    border-radius: 4px;
+    align-items: center;
+    border-bottom: 1px solid $box-shadow-grey;
+    h2 {
+      flex: 1;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: $blue;
+
+      a {
+        font-size: 1.25rem;
+        color: $blue;
+        position: relative;
+
+        &:hover {
+          color: $blue;
+          transition: 0.3s color;
+        }
+      }
+    }
+    div {
+      a {
+        margin: 1rem 0;
+        background-color: $blue;
+        color: white;
+        svg * {
+          fill: white;
+        }
+        &:hover {
+          color: $blue;
+          background-color: white;
+          transition: 0.3s background-color, 0.3s color;
+          svg * {
+            fill: $blue;
+            transition: 0.3s fill;
+          }
+        }
+      }
+    }
+  }
+
+  .search {
+    display: flex;
+    justify-content: space-between;
+    max-width: 960px;
+    width: 95%;
+    margin: 0 auto;
+    background: white;
+    padding: 0.5rem;
+
+    .sort-input, .filter-input {
+      display: flex;
+      align-items: center;
+
+      select {
+        border: 1px solid $tm-hero-text;
+        color: $tm-hero-text;
+      }
+      input[type=checkbox] {
+        &:checked {
+          background: $blue;
+          border: none;
+          &::after {
+            content: url("/assets/check-input.svg");
+            top: 2px;
+          }
+
+        }
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 1px solid $blue;
+        cursor: pointer;
+
+        &::after {
+          content: url("/assets/check-input.svg");
+          top: 2px;
+        }
+      }
+    }
+
+    .filter-input input {
+      margin-left: 5px;
+    }
+    .asc, .desc {
+      display: flex;
+      transition-duration: 0.5s;
+      transform-origin: center center;
+      max-width: 32px;
+      cursor: pointer;
+
+      svg {
+        margin: auto;
+        height: 100%;
+        width: 100%;
+        * {
+          fill: $tm-hero-text;
+        }
+      }
+    }
+    .asc {}
+    .desc {
+      transform: rotate(180deg);
+    }
+
+    .appearance {
+      height: 2rem;
+      width: 4rem;
+      display: flex;
+      align-items: center;
+
+      > * { flex: 1; }
+      svg { display: block; }
+      svg * { fill: #aaa; }
+      a svg * { fill: #ccc; }
+      a:hover svg * { fill: $blue; }
+    }
+
+    .search-input {
+      position: relative;
+
+      input {
+        width: 40%;
+        padding-left: 32px;
+        width: 100%;
+        border: 1px solid $tm-hero-text;
+        color: $tm-hero-text;
+      }
+      svg {
+        position: absolute;
+        left: 0;
+        height: 100%;
+        padding: 8px;
+        width: 32px;
+
+        * {
+          fill: $tm-hero-text;
+        }
+      }
+    }
+  }
+
+  .listings, .listings-header {
+    max-width: 960px;
+    margin: 0 auto;
+    width: 95%;
+    background: white;
+
+    .health-indicators {
+      .neg-large { color: $orange; }
+      .neg-small { color: $yellow-orange; }
+      .pos-small { color: $blue; }
+      .pos-large { color: $teal; }
+    }
+  }
+
+  .listing-details {
+    .listing-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .listings.list-view {
+    margin-top: 1.5rem;
+    border: 1px solid $box-shadow-grey;
+
+    .listing {
+      display: flex;
+      align-items: stretch;
+      background-color: $grey-4;
+      padding: 1.5rem;
+      background: white;
+      border-bottom: 1px solid $box-shadow-grey;
+
+      &.no-prices {
+        align-items: center;
+      }
+
+      .listing-image {
+        width: 20%;
+        background-color: #ddd;
+        margin-right: 2rem;
+        border-radius: 0;
+      }
+      .listing-details {
+        flex: 1;
+        width: 60%;
+        overflow: hidden;
+
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        .listing-metadata {
+          padding-right: 1rem;
+
+          .listing-title {
+            transition: 0.3s color;
+            color: $tm-hero-title;
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+
+        svg {
+          max-width: 16px;
+          max-height: 16px;
+          vertical-align: middle;
+          > * { fill: #bbb; }
+        }
+
+        .listing-account {
+          color: $tm-hero-text;
+        }
+      }
+    }
+
+    .health-indicators {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      align-items: end;
+
+      .health { grid-column: 1; }
+      .occupancy { grid-column: 2/4; }
+      .indicator { grid-row: 2; }
+      .title {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+      }
+
+      .indicator {
+        font-weight: 700;
+        font-size: 1.3rem;
+
+        .score { color: $grey-2; }
+
+        .description {
+          font-size: 0.9rem;
+          font-weight: normal;
+          color: #4B4F56;
+        }
+      }
+    }
+
+    .price-inputs-box { display: none; }
+
+    .pricing-and-review-box {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: space-between;
+
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+
+      a { width: 100%; }
+
+      .btn-stats {
+        background-color: $grey-4;
+      }
+    }
+
+    .sync-prices-box {
+      width: 100%;
+      max-width: 125px;
+      color: $blue;
+      display: flex;
+      align-items: center;
+
+      span {
+        display:block;
+        width: 50px;
+        text-align: right;
+        line-height: 1.25;
+      }
+
+      div.app-toggle {
+        display: inline-block;
+        margin-right: 0;
+      }
+    }
+  }
+
+  .listings-header.list-view { display: none; }
+
+  .listings-header.table-view, .listings.table-view .listing-details {
+    display: grid;
+    grid-template-columns: 40fr 8fr 10fr 10fr 8fr;
+    align-items: center;
+
+    div:first-child {
+      text-align: left;
+    }
+  }
+
+  .listings-header.table-view {
+    background-color: $tm-light;
+    border: 1px solid #E9EBEE;
+
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.8125rem;
+    color: #4B4F56;
+    text-align: center;
+
+  }
+
+  .listings.table-view {
+    background-color: #E9EBEE;
+    border: 1px solid #E9EBEE;
+    margin-bottom: 4rem;
+
+    .listing-details {
+      background: white;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid #E6EAEE;
+
+      > * {
+        grid-row: 1;
+        margin: auto;
+        &:first-child { margin: unset; }
+      }
+
+      .listing-metadata {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        svg { display: none; }
+      }
+      .listing-account { display: none; }
+      .sync-status { display: none; }
+
+      .health-indicators {
+        grid-column: 3;
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+
+        .title { display: none; }
+        .description { display: none; }
+        .indicator { margin: 0 0.3rem; }
+        .health {
+          grid-column: 1/3;
+          grid-row: 1;
+        }
+        .occupancy-30 {
+          grid-column: 1;
+          grid-row: 2;
+        }
+        .occupancy-90 {
+          grid-column: 2;
+          grid-row: 2;
+        }
+        .indicator > div {
+          display: none;
+          &.score { display: block; }
+        }
+      }
+
+      .listing-amenities {
+        grid-column: 2;
+        svg { display: none; }
+      }
+      .price-inputs-box {
+        grid-column: 4;
+        margin: 0 0 0 1rem;
+
+        .currency, input { padding: 0 0.3rem; }
+
+        .base-price {
+          cursor: pointer;
+          &:hover svg * { fill: $tm-bp-green; }
+        }
+
+        svg {
+          width: 1rem; height: 1rem;
+          fill: $tm-blue-grey;
+        }
+        .last-updated {
+          color: $tm-blue-grey;
+          font-size: 0.75rem;
+        }
+      }
+
+      .pricing-and-review-box {
+        grid-column: 5;
+        display: flex;
+
+        text-align: center;
+        letter-spacing: 1px;
+        font-size: 0.7rem;
+        font-weight: 600;
+
+        > * { margin: 1vh 0; }
+        .review-prices-button { display: none; }
+        .review-stats-button { display: none; }
+      }
+    }
+  }
+
+  .empty-results {
+    margin: 2rem;
+    padding: 2rem;
+
+    ul {
+      font-size: 1.2rem;
+      margin: 1rem;
+    }
+
+    .title {
+      font-size: 1.8rem;
+      color: $tm-hero-title;
+    }
+  }
+
+  .truncated {
+    text-align: center;
+    margin: auto;
+    .btn {
+      display: block;
+      margin: auto;
+      max-width: 200px;
+    }
+  }
+}
+
+
+body[class*=" dashboard-stats"] article {
+  .stats {
+
+    > div {
+      display: flex;
+      width: 100%;
+
+      > div {
+        flex: 1;
+        padding: 20px;
+      }
+
+    }
+
+    h3 {
+      letter-spacing: 1px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+      display: inline;
+    }
+
+    .chart-container {
+      width: 100%;
+
+    }
+
+    .top-bookings, .recent-bookings {
+
+      p.status {
+        padding: 0 1vw 0 1vw;
+      }
+
+    }
+
+    table.bookings-stats {
+      color: $grey-2;
+
+      thead {
+        color: $blue;
+
+        th {
+            padding: 0 1vw 0 1vw;
+        }
+      }
+
+      td {
+        padding: 0 20px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// These are in a popper which is moved out of the main element
+.base-price-history {
+  .title { font-size: 1rem; }
+  .history-table {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pacing-hover {
+  .title { font-size: 1rem; }
+  .pacing-table {
+    text-align: left;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    .header { font-weight: bold; }
+    > * { margin: 0 0.3rem; }
+  }
+}

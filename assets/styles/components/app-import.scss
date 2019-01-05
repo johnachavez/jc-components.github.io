@@ -1,0 +1,69 @@
+.app-import {
+  text-align: center;
+
+  a.link-account {
+    margin: 0.5rem auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  div.errors {
+    color: $red;
+  }
+
+  div.airlock {
+    padding: 1rem 10vw;
+    text-align: center;
+    background-color: rgba(255, 164, 164, 0.9);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.4rem;
+    z-index: 10;
+  }
+
+  div.was-airlocked {
+    padding: 1rem 10vw;
+    text-align: center;
+    background-color: rgba(255, 255, 164, 0.9);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.4rem;
+    z-index: 10;
+  }
+
+  .channels {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    a {
+      display: flex;
+      padding: 1rem 2vw;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 20vw;
+      min-width: 15vw;
+
+      &:hover {
+        background-color: $grey-3;
+      }
+      svg {
+        display: block;
+        max-height: 100%;
+        max-width: 100%;
+      }
+      img {
+        display: block;
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+  label { display: block; }
+}

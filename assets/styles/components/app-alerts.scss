@@ -1,0 +1,79 @@
+// doesn't have to be perfect, just an approximation of how far to slide it.
+$height: 60px;
+
+@keyframes add-alert {
+  from {
+    opacity: 0;
+    margin-top: $height / 2;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+.app-alerts {
+  position: fixed;
+  max-width: 50vw;
+  left: 0;
+  right: 0;
+  top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1000;
+
+  .alert {
+    position: relative;
+    border: 2px solid transparent;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 0.8);
+
+    .message {
+      padding: 8px;
+      flex: 1;
+    }
+
+    .close {
+      padding: 2px 4px;
+      margin: 8px;
+      line-height: 1;
+      color: #888;
+      cursor: pointer;
+      border-radius: 2px;
+      &:hover {
+        color: #444;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    // For animating in
+    animation: add-alert .2s 1 ease-in;
+    // For animating out
+    transition: opacity 0.2s ease-out, margin-top 0.3s ease-in;
+
+    &.dismissing {
+      opacity: 0;
+      margin-top: -$height;
+      // Make sure dismissing alerts slide behind existing ones.
+      z-index: 999;
+    }
+
+    &.error {
+      background-color: #f2dede;
+      border-color: #dca7a7;
+      &:hover {
+        background-color: lighten(#f2dede, 5%);
+      }
+    }
+    &.success {
+      background-color: #dff0d8;
+      border-color: #b2dba1;
+      &:hover {
+        background-color: lighten(#dff0d8, 5%);
+      }
+    }
+  }
+}

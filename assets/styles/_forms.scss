@@ -1,0 +1,293 @@
+@import "_images";
+
+$button-types: 'input[type="submit"], input[type="button"], button, .btn';
+$focus: darken($blue, 15%);
+
+@mixin input($back, $border) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: $back;
+  border: 2px solid $border;
+  border-radius: 4px;
+  line-height: 1.68;
+  font-family: $fontFamilyBody;
+
+  transition: 0.2s, border-color;
+
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+    border-color: $focus;
+  }
+  &::placeholder {
+    color: $tm-grey;
+  }
+}
+
+label {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: $grey-2;
+  font-size: .9rem;
+}
+
+select {
+  @include input($white, $grey-3);
+
+  padding: 5px 8px;
+  box-shadow: none;
+  background-image: none;
+
+  // Shouldn't need to do this with autoprefixer...
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background: $white url("data:image/png;base64,R0lGODlhDwAUAIABAAAAAP///yH5BAEAAAEALAAAAAAPABQAAAIXjI+py+0Po5wH2HsXzmw//lHiSJZmUAAAOw==") no-repeat 90% 50%;
+  background-position: right 10px top 50%;
+  padding-right: 38px;
+
+  &:focus {
+    outline: none;
+    border-color: $focus;
+  }
+}
+
+// Animated styling of checks:
+//  * http://blogs.adobe.com/dreamweaver/2015/08/css-vs-svg-styling-checkboxes-and-radio-buttons.html
+input[type=checkbox]{
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  // Arbitrary sizes. Can't think of a good way to match width to line-height.
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:focus {
+    border-color: $focus;
+    outline: none;
+  }
+  &::after {
+    content: $check-svg;
+    @include position-short(absolute, 4px, 4px, 4px, 4px);
+    transition: 0.2s opacity;
+    opacity: 0;
+  }
+  &:checked::after {
+    opacity: 1;
+  }
+}
+
+
+#{$all-text-inputs} {
+  @include input($white, $grey-3);
+  font-family: $fontFamilyBody;
+  padding: 5px;
+
+  &.errors {
+    animation: errors 2s 1 linear;
+  }
+  &.input-hero {
+    @include input($white, $grey-3);
+    padding: 14px;
+    border-radius: 2px;
+  }
+  &.input-grey {
+    @include input($grey-4, $grey-3);
+    padding: 12px 14px 14px;
+  }
+  &.input-large {
+    @include input($grey-4, $grey-3);
+    padding: 14px 25px;
+    width: 380px;
+    font-size: 1.3rem;
+  }
+}
+
+@mixin button($primary, $outline) {
+  transition: 0.3s background-color, 0.3s border-color, 0.3s color;
+
+  $text-color: null;
+  @if $outline {
+    @include input(transparent, $primary);
+    $text-color: $primary;
+  } @else {
+    @include input($primary, $primary);
+    $text-color: color-contrast($primary);
+  }
+
+  border: 1px $primary solid;
+
+  color: $text-color;
+  svg * { fill: $text-color; }
+  &:visited { color: $text-color; }
+
+  &:hover {
+    @if $outline {
+      background-color: transparentize($primary, 0.8);
+      border-color: $primary;
+    } @else {
+      background-color: lighten($primary, 5%);
+      border-color: darken($primary, 5%);
+    }
+  }
+
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: .8rem;
+  cursor: pointer;
+  padding: 6px 12px;
+  position: relative;
+  font-weight: bold;
+
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+}
+
+.disabled {
+  &:hover { border-color: transparent; }
+  &:focus { border-color: transparent; }
+  cursor: default;
+}
+
+a.btn-grey, .btn-grey {
+  @include button($grey-3, false);
+}
+a.btn-outline-grey, .btn-outline-grey {
+  @include button($grey-2, true);
+}
+
+a.btn-disabled, .btn-disabled {
+  @include button($grey-3, false);
+  @extend .disabled;
+}
+
+a.btn-hero {
+  @include button($teal, false);
+}
+a.btn-hero-demo {
+  @include button($white, true);
+}
+a.btn-hero, a.btn-hero-demo {
+  border-radius: 3px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+}
+
+
+a.btn-green, .btn-green {
+  @include button($green, false);
+}
+a.btn-large-green, .btn-large-green {
+  @include button($green, false);
+  padding: 16px;
+  font-size: 1rem;
+}
+a.btn-blue, .btn-blue {
+  @include button($blue, false);
+}
+a.btn-outline-blue, .btn-outline-blue,
+a.btn-import, .btn-import {
+  @include button($blue, true);
+}
+a.btn-large-blue, .btn-large-blue {
+  @include button($blue, false);
+  padding: 16px;
+  font-size: 1rem;
+}
+a.btn-outline-light, .btn-outline-light {
+  @include button($blue, false);
+  background: transparentize($blue, 0.8);
+}
+a.btn-outline-orange, .btn-outline-orange {
+  @include button($yellow-orange, true);
+}
+a.btn-red-outline, .btn-red-outline {
+  @include button($red, true);
+}
+
+a.btn-wide, .btn-wide {
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+a.btn-extra-wide, .btn-extra-wide {
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+form div.errors {
+  color: $red;
+}
+
+form.posting {
+  opacity: 0.5;
+}
+
+form.two-col {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+
+    label { text-align: left; }
+    #{$button-types} { grid-column: 2; }
+    > * { margin: 0.5rem; }
+}
+
+form.vertical, .form.vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 400px;
+  margin: auto;
+  > * {
+    margin: 0.5rem auto;
+    max-width: 100%;
+    width: 80vw;
+    display: block;
+  }
+}
+
+form.horizontal, .form.horizontal {
+  width: 600px;
+  max-width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  align-items: stretch;
+  #{$all-text-inputs} { flex: 3; }
+  #{$button-types} { flex: 1; }
+  > * { margin: 0 8px; }
+}
+
+
+
+////////// TM ///////////////
+.tm-button-primary {
+  font-family: Europa-Bold;
+  font-size: 0.875rem;
+  border: 1px solid rgba(38,129,137,0.50);
+  border-radius: 3px;
+  color: #FFFFFF;
+  background: $tm-bp-green;
+
+  &:hover {
+    background: #268189;
+    border-color: rgba(38,129,137,0.50);
+  }
+}
+.button-outline {
+}
+.button-rounded {
+}

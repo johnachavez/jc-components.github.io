@@ -1,0 +1,41 @@
+// From: https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/library/_text-inputs.scss
+@function _assign-inputs(
+    $inputs,
+    $pseudo: null
+  ) {
+
+  $list: ();
+
+  @each $input in $inputs {
+    $input: unquote($input);
+    $input: if($pseudo, $input + ":" + $pseudo, $input);
+    $list: append($list, $input, comma);
+  }
+
+  @return $list;
+}
+
+$text-inputs-list: (
+  "[type='color']",
+  "[type='date']",
+  "[type='datetime']",
+  "[type='datetime-local']",
+  "[type='email']",
+  "[type='month']",
+  "[type='number']",
+  "[type='password']",
+  "[type='search']",
+  "[type='tel']",
+  "[type='text']",
+  "[type='time']",
+  "[type='url']",
+  "[type='week']",
+  "input:not([type])",
+  "textarea",
+);
+
+$all-text-inputs:         _assign-inputs($text-inputs-list);
+$all-text-inputs-active:  _assign-inputs($text-inputs-list, active);
+$all-text-inputs-focus:   _assign-inputs($text-inputs-list, focus);
+$all-text-inputs-hover:   _assign-inputs($text-inputs-list, hover);
+$all-text-inputs-invalid: _assign-inputs($text-inputs-list, invalid);

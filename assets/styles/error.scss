@@ -1,0 +1,38 @@
+article .error {
+  margin: 0 auto;
+  padding: 18vh 5vw;
+  text-align: center;
+  max-width: 1200px;
+  width: 100%;
+
+  h1 { font-size: 3rem; }
+
+  svg {
+    height: 130px;
+    margin: 20px 0;
+    width: 130px;
+    path {
+      fill: $blue;
+      width: 100px;
+    }
+  }
+
+  .help-email {
+    color: $blue;
+  }
+
+  pre {
+    width: 150%;
+    margin: auto;
+    margin-left: -25%;
+    text-align: left;
+
+    background: #f8f8f8;
+    background-image: linear-gradient(#f8f8f8 50%, #fff 50%);
+    background-position: 0 0;
+    background-repeat: repeat;
+    font-size: 1rem;
+    line-height: 2;
+    background-size: 4rem 4rem;
+  }
+}

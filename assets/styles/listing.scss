@@ -1,0 +1,367 @@
+@keyframes fade-in-and-down {
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.back-button {
+  margin-top: 1rem;
+}
+
+.listing-header {
+  padding: 1rem 1rem 3rem 1rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .listing-image {
+    width: 100px;
+    margin-right: 1rem;
+  }
+  .btn-green {
+    display: block;
+  }
+
+  &.preview {
+    button{
+      background: white;
+    }
+  }
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    > * {
+      margin: 1rem ;
+      font-size: .8rem;
+      line-height: 2.5rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      :first-child.icon {
+        margin-right: .5rem;
+      }
+    }
+  }
+
+  .details {
+    flex: 1;
+    text-align: left;
+    h1 {
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: $grey-2;
+      line-height: 1.4;
+    }
+    a {
+      font-weight: 300;
+      font-size: 0.8rem;
+      opacity: .6;
+      &:hover {
+        opacity: 1;
+        transition: opacity, 0.2s;
+      }
+    }
+    svg {
+      width: 14px; height: 14px;
+      * { fill: $tm-blue-grey; }
+    }
+  }
+}
+
+
+body[class*=" preview"], body.dashboard-listing {
+  // Hacks until we make this background color global.
+  background: #F6F7F9;
+}
+
+body[class*=" preview"], body.dashboard-listing { article {
+  margin-top: 1rem;
+  margin-right: 10rem;
+  // We hide the minimap on small screens
+  @media (max-width: $calendar-break) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .listing-status {
+    background: white;
+    position: sticky;
+    padding: 2rem 0;
+    border-bottom: $grey-3 solid 1px;
+    top: -5px;
+  }
+  .blue-tabs {
+    background: white;
+  }
+
+
+  .demo-form-wrap {
+    display: none;
+    overflow: hidden;
+    margin: 1rem auto;
+  }
+
+  .upsell {
+    display: table;
+    margin: 4vh auto 8vh;
+  }
+
+
+  .price-inputs {
+    padding: 0 0 2vh 0;
+    margin: auto;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    background: white;
+
+    p {
+      margin: 0;
+    }
+
+    > div { margin: 0 10px; }
+    label {
+      font-weight: 600;
+      color: #777;
+      font-size: 0.8rem;
+      margin-right: 10px;
+    }
+    .question {
+      display: inline-block;
+    }
+    button {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+  }
+  .listing-actions {
+    text-align: center;
+
+    a {
+      margin-left: 10px;
+    }
+  }
+
+  .nearby-error {
+    text-align: center;
+    padding: 2rem 0;
+
+    h2 {
+      margin: 1rem auto;
+      font-size: 2rem;
+    }
+    h3, .message {
+      font-size: 1.5rem;
+      font-weight: lighter;
+    }
+  }
+  .nearby {
+    display: flex;
+    height: 60vh;
+    // We have the listing page offset a bit to the left to accomodate the
+    // calendar minimap. Because the design of nearby sucks and we need all the
+    // space we can get, undo the squishing.
+    margin-right: -10rem;
+
+    > div {
+      flex: 1 1 50%;
+      margin: 1rem 2vw;
+      max-width: 50%;
+    }
+    .nearby-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .detail-list {
+      display: flex;
+      flex-direction: column;
+
+      .search {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        transition: transform 0.5s;
+        svg {
+          width: 100%;
+          max-width: 32px;
+          max-height: 32px;
+        }
+      }
+      .desc {
+        transform: rotate(180deg);
+      }
+
+      .channel-toggle {
+        display: flex;
+        align-items: center;
+        margin-left: 10vw;
+
+        .toggle {
+          margin: 0 1vw;
+          &.off { background-color: #ff5a5f; }
+          &.on { background-color: #0c6db6; }
+        }
+      }
+
+      .listings {
+        overflow-y: scroll;
+      }
+    }
+
+    // TODO: copied from dashboard. Remove duplication
+    .listings > .listing {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: $grey-4;
+      margin-bottom: 3vh;
+      padding: 1rem 1vw;
+      img {
+        width: 20%;
+        height: auto;
+        margin-right: 20px;
+        border-radius: 3px;
+      }
+      .details {
+        width: 80%;
+      }
+      .links {
+        display: flex;
+        > * { flex: 1; }
+      }
+
+      .main-scores {
+        display: flex;
+        justify-content: flex-start;
+        margin: 0.3rem 0;
+
+        > div {
+          flex: 1;
+          padding-right: 5vw;
+        }
+        .score {
+          font-size: 2rem;
+          line-height: 1;
+        }
+
+        .links > a {
+          display: block;
+          width: 50%;
+          opacity: 0.7;
+          &:hover { opacity: 1; }
+        }
+        svg {
+          width: 100%;
+          max-width: 28px;
+        }
+        a.logo svg {
+          * { fill: $blue; }
+        }
+      }
+
+      .nearby-table > div {
+        display: flex;
+        &:nth-child(odd) { background-color: $grey-3; }
+        &:nth-child(even) { background-color: $grey-4; }
+        & > div {
+          flex: 1;
+        }
+      }
+
+      &.highlight {
+        background-color: #feebcd;
+      }
+    }
+    .listing-title {
+      transition: 0.3s color;
+      color: $tm-hero-title;
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .stats {
+    background-color: white;
+
+    > div {
+      display: flex;
+      width: 100%;
+
+      > div {
+        flex: 1;
+        margin: 1rem;
+      }
+
+    }
+
+    h3 {
+      letter-spacing: 1px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+      display: inline;
+    }
+
+    .chart-container {
+      width: 100%;
+
+      // Keep the highcharts svg width under control.
+      .highcharts-root {
+        max-width: 100%;
+      }
+    }
+
+    .top-bookings, .recent-bookings {
+      width: 100%;
+
+      p.status {
+        padding: 0 1vw 0 1vw;
+      }
+
+    }
+
+    table.bookings-stats {
+      color: $grey-2;
+      width: 100%;
+
+      th, td {
+        padding: 0 0.25rem;
+        &:first-child {
+          text-align: left;
+        }
+      }
+      thead { color: $blue; }
+      td { text-align: center; }
+    }
+
+  }
+}}
+
+
+
+body[class*=" dashboard-listing-market-data"] article {
+  h2 {
+      font-size: 1.3rem;
+      font-weight: normal;
+      margin: 0.5rem auto;
+      text-align: center;
+    }
+}
+

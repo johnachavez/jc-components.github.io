@@ -1,0 +1,56 @@
+.app-property-managers {
+  margin: 5rem auto;
+
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .partners {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+    padding: 0 5vw;
+
+    img {
+      object-fit: contain;
+      flex: 0 1;
+      width: 20%;
+      padding: 1rem;
+    }
+  }
+
+  .divider {
+    display: flex;
+    flex-direction: row;
+    padding: 0 5vw;
+    margin: auto;
+    max-width: 1080px;
+
+    &:before, &:after{
+      content: "";
+      flex: 1 1;
+      border-bottom: 3px solid #888;
+      margin: auto;
+    }
+    &:before { margin-right: 5vw; }
+    &:after { margin-left: 5vw; }
+
+    svg {
+      width: 6rem;
+      * { fill: #888; }
+    }
+  }
+
+  .quote {
+    margin: 2rem 1rem;
+    text-align: center;
+    color: $tm-hero-text;
+    font-size: 1.5rem;
+
+    .author { margin-top: 1rem; }
+  }
+}
